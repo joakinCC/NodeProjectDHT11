@@ -5,15 +5,23 @@
 	<title>Dashboard de Monitoreo</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--<link href="css/style.css" rel=stylesheet> -->
+	<link href="style.css" rel=stylesheet>
 </head>
 
 <body>
-	<p>Temperatura</p>
-	<p id="temperature-display">Cargando los datos de temperatura</p>
-	<p>Humedad</p>
-	<p id="humidity-display">Cargando los datos de humedad</p>
-
+	<header>Dashboard de Monitoreo</header>
+	<div class="container">
+		<div class="temperature">
+			<p class="title">Temperatura</p>
+			<p id="temperature-display">Cargando los datos de temperatura</p>
+			<p class="unit">°C</p>
+		</div>
+		<div class="humidity">
+			<p class="title">Humedad</p>
+			<p id="humidity-display">Cargando los datos de humedad</p>
+			<p class="unit">%</p>
+		</div>
+	</div>
 </body>
 <script src="script.js"></script>
 </html>
