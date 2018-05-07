@@ -75,6 +75,27 @@ const pushData = (arr, value, maxLen) => {
 const humidityDisplay = document.getElementById('humidity-display')
 const temperatureDisplay = document.getElementById('temperature-display')
 
+const fetchTemperatureHistory = () => {
+	fetch('/temperature/history')
+	.then(results => {
+		return results.json()
+	})
+	.then(data => {
+		data.forEach(reading => {
+			const time =  new Date(reading.createdAt + 'Z')
+			const formattedTime =
+			time.getHours() +  ':' + time.getMinutes() + ':' + time.getSeconds()
+			
+			pushData(temperatureChartConfig.data.labels, formattedTime, 10)
+			pushData(temperatureChartConfig.data.datasets[0].data, reading.value, 10)
+	})
+		temperatureChart.update()
+})
+
+}
+fetchTemperatureHistory()
+
+
 const fetchTemperature = () => {
 	fetch('/temperature')
 	   .then(results => {
@@ -91,6 +112,26 @@ const fetchTemperature = () => {
 	})
 }
 
+const fetchHumidityHistory = () => {
+        fetch('/humidity/history')
+        .then(results => {
+                return results.json()
+        })
+        .then(data => {
+                data.forEach(reading => {
+                        const time =  new Date(reading.createdAt + 'Z')
+                        const formattedTime =
+                        time.getHours() +  ':' + time.getMinutes() + ':' + time.getSeconds()
+
+                        pushData(humidityChartConfig.data.labels, formattedTime, 10)
+                        pushData(humidityChartConfig.data.datasets[0].data, reading.value, 10)
+        })
+                humidityChart.update()
+})
+
+}
+fetchHumidityHistory()
+
 const fetchHumidity = () => {
         fetch('/humidity')
            .then(results => {
@@ -105,6 +146,25 @@ const fetchHumidity = () => {
            humidityChart.update()
            humidityDisplay.innerHTML = '<strong>'+ data.value + '</strong>'
         })
+}
+
+const fetchHumidityHistory = () => {
+        fetch('/humidity/history')
+        .then(results => {
+                return results.json()
+        })
+        .then(data => {
+                data.forEach(reading => {
+                        const time =  new Date(reading.createdAt + 'Z')
+                        const formattedTime =
+                        time.getHours() +  ':' + time.getMinutes() + ':' + time.getSeconds()
+
+                        pushData(humidityChartConfig.data.labels, formattedTime, 10)
+                        pushData(humidityChartConfig.data.datasets[0].data, reading.value, 10)
+        })
+                humidityChart.update()
+})
+
 }
 
 setInterval(() => {
