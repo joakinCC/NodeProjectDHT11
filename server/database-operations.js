@@ -13,12 +13,11 @@ const fetchLatestReadings = (type, limit, callback) => {
 
 const fetchReadingsBetweenTime = (type, start, end, callback) => {
 	db.all(`SELECT * FROM temperature WHERE createdAt > ?
-	AND createdAt < ?;`,[start, end], callback)
+	AND createdAt < ? ORDER BY createdAt ASC;`,[start, end], callback)
 }
 
 const getAverageOfReadingsBetweenTime = (type, start, end, callback) => {
-	db.get(`SELECT avg(value) FROM temperature WHERE createdAt > ? 
-	AND createdAt < ?;`[start, end], callback)
+	db.get(`SELECT avg(value) FROM temperature WHERE createdAt > ? AND createdAt < ?;`, [start, end], callback)
 }
 
 module.exports ={
