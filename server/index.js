@@ -2,7 +2,7 @@ const express = require('express')
 const path = require('path')
 const app = express()
 const getCachedSensorReadings = require('./get-cached-sensor-readings')
-const databaseOperations = require('./database-operations')
+const databaseOperations = require('./database-operations.js')
 
 app.use('/public', express.static(path.join(__dirname, 'public')))
 

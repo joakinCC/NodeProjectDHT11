@@ -3,11 +3,11 @@ const path = require('path')
 const db = new sqlite3.Database(path.resolve('./.sqlite.db'))
 
 const insertReadings = (type, reading) => {
-	db.run(`INSERT INTO '${type}' VALUES (datetime('now'), ${reading});`)
+	db.run(`INSERT INTO '${type}' VALUES (datetime('now'), '${reading}');`)
 }
 
 const fetchLatestReadings = (type, limit, callback) => {
-	db.all(`SELECT * FROM '${type}' ORDER BY createdAt
+	db.all(`SELECT * FROM ${type} ORDER BY createdAt
 	DESC LIMIT $(limit)`, callback)
 }
 

@@ -131,9 +131,7 @@ const fetchTemperatureHistory = () => {
           pushData(temperatureChartConfig.data.labels, formattedTime, 10)
           pushData(
             temperatureChartConfig.data.datasets[0].data,
-            reading.value,
-            10
-          )
+            reading.value,10)
         })
 
         /**
